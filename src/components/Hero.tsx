@@ -19,12 +19,11 @@ export default function Hero() {
           <p style={{fontSize:'14px',color:'rgba(255,255,255,0.6)',lineHeight:1.7,marginBottom:'44px',maxWidth:'480px'}}>
             Da construção de casas populares a empreendimentos de luxo, a Casa Forte entrega obras com responsabilidade, padrão construtivo e rigor no cumprimento dos prazos.
           </p>
-          <div style={{lay:'flex',flexWrap:'wrap',gap:'12px'}}>
+          <div style={{display:'flex',flexWrap:'wrap',gap:'12px'}}>
             <a href="#empreendimentos" style={{padding:'14px 28px',background:'#E8390E',color:'white',borderRadius:'8px',fontSize:'14px',fontWeight:'600',display:'inline-block'}}>
               Conheça nossos empreendimentos
             </a>
-            <a href="https://wa.me/5582991017208" target="_blank" rel="noopener noreferrer"
-              style={{padding:'14px 28px',background:'transparent',color:'white',border:'1px solid rgba(255,255,255,0.4)',borderRadius:'8px',fontSize:'14px',fontWeight:'500',display:'inline-block'}}>
+            <a href="https://wa.me/5582991017208" target="_blank" rel="noopener noreferrer" style={{padding:'14px 28px',background:'transparent',color:'white',border:'1px solid rgba(255,255,255,0.4)',borderRadius:'8px',fontSize:'14px',fontWeight:'500',display:'inline-block'}}>
               Fale conosco
             </a>
           </div>
