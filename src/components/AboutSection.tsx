@@ -7,15 +7,15 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section id="historia" style={{background:'#FFFFFF',padding:'100px 32px'}}>
+    <section id="historia" style={{background:'#FFFFFF',padding:'80px 24px'}}>
       <div style={{maxWidth:'1200px',margin:'0 auto'}}>
         <div style={{display:'flex',alignItems:'center',gap:'12px',marginBottom:'20px'}}>
           <span style={{width:'32px',height:'1px',background:'#E8390E'}} />
           <span style={{fontSize:'11px',fontWeight:'600',color:'#E8390E',letterSpacing:'0.15em',textTransform:'uppercase'}}>Nossa história</span>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'80px',alignItems:'start'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr',gap:'48px'}} className="cf-about-grid">
           <div>
-            <h2 style={{fontFamily:'Playfair Display, serif',fontSize:'clamp(28px, 4vw, 44px)',fontWeight:'600',color:'#2A2A2A',lineHeight:1.2,marginBottom:'28px'}}>
+            <h2 style={{fontFamily:'Playfair Display, serif',fontSize:'clamp(26px, 5vw, 44px)',fontWeight:'600',color:'#2A2A2A',lineHeight:1.2,marginBottom:'24px'}}>
               Uma trajetória construída com responsabilidade
             </h2>
             <p style={{fontSize:'15px',color:'#4A4845',lineHeight:1.8,fontWeight:'300'}}>
@@ -24,14 +24,19 @@ export default function AboutSection() {
           </div>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'2px'}}>
             {stats.map((stat, i) => (
-              <div key={i} style={{padding:'36px 28px',background: i % 2 === 0 ? '#F5F3F0' : '#FFFFFF',border:'1px solid #ECEAE6'}}>
-                <div style={{fontFamily:'Playfair Display, serif',fontSize:'40px',fontWeight:'700',color:'#2A2A2A',lineHeight:1,marginBottom:'8px'}}>{stat.value}</div>
+              <div key={i} style={{padding:'28px 20px',background:i%2===0?'#F5F3F0':'#FFFFFF',border:'1px solid #ECEAE6'}}>
+                <div style={{fontFamily:'Playfair Display, serif',fontSize:'36px',fontWeight:'700',color:'#2A2A2A',lineHeight:1,marginBottom:'8px'}}>{stat.value}</div>
                 <div style={{fontSize:'12px',color:'#8A8680',fontWeight:'500'}}>{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
+      <style>{`
+        @media (min-width: 900px) {
+          .cf-about-grid { grid-template-columns: 1fr 1fr !important; gap: 80px !important; }
+        }
+      `}</style>
     </section>
   )
 }
