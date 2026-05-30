@@ -11,8 +11,7 @@ export default function Hero() {
             <span style={{fontSize:'11px',fontWeight:'600',color:'rgba(255,255,255,0.7)',letterSpacing:'0.12em',textTransform:'uppercase'}}>Construtora &amp; Incorporadora</span>
           </div>
           <h1 style={{fontFamily:'Playfair Display, serif',fontSize:'clamp(32px, 8vw, 68px)',fontWeight:'700',color:'#FFFFFF',lineHeight:1.1,marginBottom:'20px'}}>
-            Casa Forte<br />
-            <em style={{fontStyle:'italic',color:'rgba(255,255,255,0.85)'}}>Incorporadora</em>
+            Casa Forte
           </h1>
           <p style={{fontSize:'clamp(15px, 4vw, 18px)',fontWeight:'300',color:'rgba(255,255,255,0.85)',lineHeight:1.6,marginBottom:'14px'}}>
             Há 13 anos construindo com solidez, qualidade e compromisso em Alagoas.
