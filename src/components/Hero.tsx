@@ -12,7 +12,7 @@ export default function Hero() {
           </div>
           <h1 style={{fontFamily:'Playfair Display, serif',fontSize:'clamp(32px, 8vw, 68px)',fontWeight:'700',color:'#FFFFFF',lineHeight:1.1,marginBottom:'20px'}}>
             Casa Forte<br />
-            <em style={{fontStyle:'italic',color:'rgba(255,255,255,0.85)'}}>Construtora</em>
+            <em style={{fontStyle:'italic',color:'rgba(255,255,255,0.85)'}}>Incorporadora</em>
           </h1>
           <p style={{fontSize:'clamp(15px, 4vw, 18px)',fontWeight:'300',color:'rgba(255,255,255,0.85)',lineHeight:1.6,marginBottom:'14px'}}>
             Há 13 anos construindo com solidez, qualidade e compromisso em Alagoas.
@@ -24,8 +24,7 @@ export default function Hero() {
             <a href="#empreendimentos" style={{padding:'14px 28px',background:'#E8390E',color:'white',borderRadius:'8px',fontSize:'14px',fontWeight:'600',display:'inline-block',textAlign:'center'}}>
               Conheça nossos empreendimentos
             </a>
-            <a href="https://wa.me/5582991017208" target="_blank" rel="noopener noreferrer"
-              style={{padding:'14px 28px',background:'transparent',color:'white',border:'1px solid rgba(255,255,255,0.4)',borderRadius:'8px',fontSize:'14px',fontWeight:'500',display:'inline-block',textAlign:'center'}}>
+            <a href="https://wa.me/5582991017208" target="_blank" rel="noopener noreferrer" style={{padding:'14px 28px',background:'transparent',color:'white',border:'1px solid rgba(255,255,255,0.4)',borderRadius:'8px',fontSize:'14px',fontWeight:'500',display:'inline-block',textAlign:'center'}}>
               Fale conosco
             </a>
           </div>
