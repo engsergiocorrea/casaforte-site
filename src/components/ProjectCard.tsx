@@ -4,7 +4,7 @@ import type { Project } from '@/data/projects'
 const phaseConfig: Record<string, { bg: string; color: string }> = {
   'Entregue': { bg: '#dcfce7', color: '#15803d' },
   'Em obra': { bg: '#fef3c7', color: '#92400e' },
-  'Lancamento': { bg: '#fee2e2', color: '#E8390E' },
+  'Lançamento': { bg: '#fee2e2', color: '#E8390E' },
 }
 
 export default function ProjectCard({ project }: { project: Project }) {

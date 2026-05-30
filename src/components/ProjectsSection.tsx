@@ -11,10 +11,10 @@ export default function ProjectsSection() {
             <span style={{fontSize:'11px',fontWeight:'600',color:'#E8390E',letterSpacing:'0.15em',textTransform:'uppercase'}}>Portfólio</span>
           </div>
           <h2 style={{fontFamily:'Playfair Display, serif',fontSize:'clamp(26px, 6vw, 44px)',fontWeight:'600',color:'#2A2A2A',lineHeight:1.2,marginBottom:'16px'}}>
-            Empreendimentos Casa Forte
+            Empreendimentos na Rota Ecológica dos Milagres
           </h2>
-          <p style={{fontSize:'14px',color:'#8A8680',lineHeight:1.7,maxWidth:'360px',fontWeight:'300'}}>
-            Projetos que traduzem nossa evolução, qualidade construtiva e compromisso com entrega.
+          <p style={{fontSize:'14px',color:'#8A8680',lineHeight:1.8,maxWidth:'560px',fontWeight:'300'}}>
+            Depois de uma trajetória consolidada na construção civil, a Casa Forte iniciou sua expansão para a Rota Ecológica dos Milagres, desenvolvendo empreendimentos que unem localização, qualidade construtiva e potencial de valorização imobiliária.
           </p>
         </div>
         <div style={{display:'grid',gridTemplateColumns:'1fr',gap:'20px'}} className="cf-projects-grid">
