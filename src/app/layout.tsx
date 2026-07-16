@@ -4,6 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Casa Forte Construtora e Incorporadora',
   description: 'Há 13 anos construindo com solidez, qualidade e compromisso em Alagoas.',
+  icons: { icon: '/icon.png', apple: '/apple-icon.png' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
