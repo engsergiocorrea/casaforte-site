@@ -21,3 +21,15 @@ html, body {
   overflow-x: hidden;
   max-width: 100vw;
 }
+
+a, button { -webkit-tap-highlight-color: transparent; }
+a:active, button:active { transform: scale(0.97); transition: transform 100ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
