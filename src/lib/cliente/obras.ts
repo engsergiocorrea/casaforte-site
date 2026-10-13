@@ -4,7 +4,7 @@ import { db } from './supabase'
 import type { Conta } from './sessao'
 
 // Vínculo cliente ↔ obra vem do SIENGE (ver acesso.ts): contrato liberado →
-// empreendimento → area_cliente_empreendimentos.obra_id. O cadastro de clientes
+// empreendimento → obras.sienge_enterprise_id (obra ativa do mesmo empreendimento). O cadastro de clientes
 // das obras (clientes/cliente_obras) NÃO concede acesso.
 
 export type Obra = {

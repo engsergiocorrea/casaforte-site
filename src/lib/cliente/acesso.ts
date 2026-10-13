@@ -6,7 +6,8 @@ import { clientePorDocumento, contratosDoCliente, telefoneWhatsApp, type Contrat
 // Fonte única do vínculo cliente ↔ empreendimento ↔ obra: o SIENGE.
 //   CPF/CNPJ → cliente no Sienge → contratos de venda não cancelados
 //   → filtrados pelos empreendimentos habilitados em area_cliente_empreendimentos
-//     ('liberado' = todos; 'teste' = só CPFs em area_cliente_testadores).
+//     ('liberado' = todos; 'teste' = só CPFs em area_cliente_testadores)
+//   → obra do RDO = obras.sienge_enterprise_id do mesmo empreendimento.
 // Sem nenhum contrato habilitado = sem acesso à Área do Cliente.
 
 export type ContratoLiberado = {
@@ -27,7 +28,7 @@ export type Acesso = {
   teste: boolean            // acesso concedido só por estar na lista de testadores
 }
 
-type Empreendimento = { sienge_enterprise_id: number; nome: string; status: string; obra_id: string | null }
+type Empreendimento = { sienge_enterprise_id: number; nome: string; status: string }
 
 // Cache curto por instância: cada página consulta o acesso, e o Sienge não precisa
 // ser chamado a cada clique. Troca de status/testador vale em até 5 minutos.
@@ -45,7 +46,7 @@ export async function acessoPorDocumento(doc: string, { semCache = false } = {})
 
 async function calcularAcesso(doc: string): Promise<Acesso | null> {
   const [{ data: emps, error: e1 }, { data: testador, error: e2 }] = await Promise.all([
-    db().from('area_cliente_empreendimentos').select('sienge_enterprise_id, nome, status, obra_id').neq('status', 'desligado'),
+    db().from('area_cliente_empreendimentos').select('sienge_enterprise_id, nome, status').neq('status', 'desligado'),
     db().from('area_cliente_testadores').select('cpf, telefone_whatsapp, ativo').eq('cpf', doc).maybeSingle(),
   ])
   if (e1 || e2) throw new Error(`config da área do cliente indisponível: ${(e1 ?? e2)?.message}`)
@@ -66,6 +67,15 @@ async function calcularAcesso(doc: string): Promise<Acesso | null> {
     .filter((c) => !c.salesContractCustomers || c.salesContractCustomers.some((p) => p.id === cliente.id))
   if (!contratos.length) return null
 
+  // Obra do RDO = obra ATIVA vinculada ao mesmo empreendimento do Sienge (única por empreendimento).
+  const { data: obras, error: e3 } = await db()
+    .from('obras')
+    .select('id, sienge_enterprise_id')
+    .in('sienge_enterprise_id', [...new Set(contratos.map((c) => c.enterpriseId))])
+    .eq('ativo', true)
+  if (e3) throw new Error(`obras indisponíveis: ${e3.message}`)
+  const obraPorEmp = new Map((obras ?? []).map((o) => [o.sienge_enterprise_id as number, o.id as string]))
+
   const somenteTeste = contratos.every((c) => habilitados.get(c.enterpriseId)!.status === 'teste')
   return {
     cliente,
@@ -81,7 +91,7 @@ async function calcularAcesso(doc: string): Promise<Acesso | null> {
         empreendimento: emp.nome || c.enterpriseName || 'Empreendimento',
         unidade: c.salesContractUnits?.find((u) => u.main)?.name ?? c.salesContractUnits?.[0]?.name ?? null,
         entregaPrevista: c.expectedDeliveryDate ?? null,
-        obraId: emp.obra_id,
+        obraId: obraPorEmp.get(c.enterpriseId) ?? null,
       }
     }),
   }

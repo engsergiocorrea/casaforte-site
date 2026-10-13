@@ -49,8 +49,8 @@ on conflict (sienge_enterprise_id) do nothing;
 --   insert into public.area_cliente_testadores (cpf, nome, telefone_whatsapp, observacao)
 --   values ('00000000000', 'Cliente X (teste)', '5582999999999', 'teste diretoria');
 --
--- Quando a obra do UMÁ existir no sistema de RDO:
---   update public.area_cliente_empreendimentos set obra_id = '<id da obra>' where sienge_enterprise_id = 2;
+-- A obra do RDO é achada pelo vínculo obras.sienge_enterprise_id (ver
+-- casaforte-obras/sql/07_obras_sienge.sql, que também remove a coluna obra_id daqui).
 --
 -- Para abrir aos clientes do UMÁ (fim do teste):
 --   update public.area_cliente_empreendimentos set status = 'liberado' where sienge_enterprise_id = 2;
