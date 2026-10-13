@@ -39,6 +39,10 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <a href="/cliente"
+            style={{padding:'0.5rem 1.125rem',border:`1px solid ${scrolled?'#DDD9D3':'rgba(255,255,255,0.55)'}`,color:scrolled?'#2A2A2A':'#FFFFFF',borderRadius:'8px',fontSize:'0.8125rem',fontWeight:'500',transition:'color 150ms ease, border-color 150ms ease'}}>
+            Área do Cliente
+          </a>
           <a href="https://wa.me/5582991017208" target="_blank" rel="noopener noreferrer"
             style={{padding:'0.5625rem 1.25rem',background:'#E8390E',color:'white',borderRadius:'8px',fontSize:'0.8125rem',fontWeight:'500'}}>
             Fale conosco
@@ -77,6 +81,10 @@ export default function Header() {
             {link.label}
           </a>
         ))}
+        <a href="/cliente" onClick={() => setMenuOpen(false)}
+          style={{padding:'0.75rem 1.25rem',border:'1px solid #DDD9D3',color:'#2A2A2A',borderRadius:'8px',fontSize:'0.875rem',fontWeight:'600',textAlign:'center'}}>
+          Área do Cliente
+        </a>
         <a href="https://wa.me/5582991017208" target="_blank" rel="noopener noreferrer"
           style={{padding:'0.75rem 1.25rem',background:'#E8390E',color:'white',borderRadius:'8px',fontSize:'0.875rem',fontWeight:'600',textAlign:'center'}}>
           Fale conosco
