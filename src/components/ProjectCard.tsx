@@ -27,7 +27,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
       <div style={{padding:'1.5rem',display:'flex',flexDirection:'column',flex:1}}>
         <div style={{fontSize:'0.75rem',color:'#6F6B66',marginBottom:'0.375rem',fontWeight:500}}>{project.location}</div>
-        <h3 style={{fontFamily:'var(--serif)',fontSize:'1.375rem',fontWeight:600,color:'#2A2A2A',marginBottom:'0.625rem',letterSpacing:'-0.01em'}}>{project.name}</h3>
+        <h3 style={{fontFamily:'var(--display)',fontSize:'1.375rem',fontWeight:600,color:'#2A2A2A',marginBottom:'0.625rem',letterSpacing:'-0.01em'}}>{project.name}</h3>
         <p style={{fontSize:'0.9375rem',color:'#45433F',lineHeight:1.65,marginBottom:'1.25rem',fontWeight:400,flex:1}}>{project.description}</p>
         <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="cf-link-cta"
           style={{fontSize:'0.875rem',fontWeight:600,color:'#E8390E',display:'inline-flex',alignItems:'center',gap:'0.375rem',alignSelf:'flex-start',padding:'0.25rem 0'}}>

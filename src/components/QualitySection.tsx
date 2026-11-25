@@ -33,7 +33,7 @@ export default function QualitySection() {
               <span style={{width:'32px',height:'1px',background:'#E8390E'}} />
               <span style={{fontSize:'0.75rem',fontWeight:600,color:'#E8390E',letterSpacing:'0.16em',textTransform:'uppercase'}}>Qualidade</span>
             </div>
-            <h2 style={{fontFamily:'var(--serif)',fontSize:'clamp(1.875rem, 4.5vw, 2.75rem)',fontWeight:600,color:'#FFFFFF',lineHeight:1.15,letterSpacing:'-0.02em',marginBottom:'1.5rem'}}>
+            <h2 style={{fontFamily:'var(--display)',fontSize:'clamp(1.875rem, 4.5vw, 2.75rem)',fontWeight:600,color:'#FFFFFF',lineHeight:1.15,letterSpacing:'-0.03em',marginBottom:'1.5rem'}}>
               Qualidade de entrega e compromisso com prazo
             </h2>
             <p style={{fontSize:'1rem',color:'rgba(255,255,255,0.72)',lineHeight:1.75,fontWeight:400}}>

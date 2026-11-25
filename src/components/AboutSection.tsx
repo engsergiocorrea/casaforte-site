@@ -20,7 +20,7 @@ export default function AboutSection() {
         </Reveal>
         <div style={{display:'grid',gridTemplateColumns:'1fr',gap:'3rem'}} className="cf-about-grid">
           <Reveal>
-            <h2 style={{fontFamily:'var(--serif)',fontSize:'clamp(1.875rem, 5vw, 2.875rem)',fontWeight:600,color:'#2A2A2A',lineHeight:1.15,letterSpacing:'-0.02em',marginBottom:'1.5rem'}}>
+            <h2 style={{fontFamily:'var(--display)',fontSize:'clamp(1.875rem, 5vw, 2.875rem)',fontWeight:600,color:'#2A2A2A',lineHeight:1.15,letterSpacing:'-0.03em',marginBottom:'1.5rem'}}>
               Uma trajetória construída com solidez
             </h2>
             <p style={{...paragrafo,marginBottom:'1rem'}}>
@@ -37,7 +37,7 @@ export default function AboutSection() {
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'12px'}}>
               {stats.map((stat, i) => (
                 <div key={i} style={{padding:'1.75rem 1.375rem',background:'#F5F3F0',borderRadius:'14px'}}>
-                  <div style={{fontFamily:'var(--serif)',fontSize:'clamp(2.25rem, 6vw, 2.75rem)',fontWeight:700,color:'#2A2A2A',lineHeight:1,letterSpacing:'-0.02em',marginBottom:'0.625rem',fontVariantNumeric:'lining-nums'}}>{stat.value}</div>
+                  <div style={{fontFamily:'var(--display)',fontSize:'clamp(2.25rem, 6vw, 2.75rem)',fontWeight:700,color:'#2A2A2A',lineHeight:1,letterSpacing:'-0.03em',marginBottom:'0.625rem',fontVariantNumeric:'lining-nums'}}>{stat.value}</div>
                   <div style={{fontSize:'0.8125rem',color:'#6F6B66',fontWeight:500,lineHeight:1.5}}>{stat.label}</div>
                 </div>
               ))}
@@ -47,7 +47,7 @@ export default function AboutSection() {
                   <path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" /><path d="M8.5 12l2.5 2.5 4.5-5" />
                 </svg>
                 <div>
-                  <div style={{fontFamily:'var(--serif)',fontSize:'1.25rem',fontWeight:600,color:'#FFFFFF',lineHeight:1.2,marginBottom:'0.5rem'}}>Qualidade e prazo</div>
+                  <div style={{fontFamily:'var(--display)',fontSize:'1.25rem',fontWeight:600,color:'#FFFFFF',lineHeight:1.2,marginBottom:'0.5rem'}}>Qualidade e prazo</div>
                   <div style={{fontSize:'0.8125rem',color:'rgba(255,255,255,0.72)',fontWeight:400,lineHeight:1.5}}>Nosso compromisso total em cada obra, do projeto à entrega das chaves.</div>
                 </div>
               </div>

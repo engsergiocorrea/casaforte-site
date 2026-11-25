@@ -1,19 +1,17 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans } from 'next/font/google'
+import { Inter, Inter_Tight } from 'next/font/google'
 import './globals.css'
 
-// Fontes da marca servidas pelo próprio site (next/font). O @import do Google
-// no CSS era descartado no build e o site caía em Times/Helvetica.
-const serif = Playfair_Display({
+// Fontes da marca servidas pelo próprio site (next/font): Inter Tight nos
+// títulos e Inter no texto — linha moderna, alinhada ao padrão dos sistemas.
+const display = Inter_Tight({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-serif',
+  weight: ['500', '600', '700'],
+  variable: '--font-display',
   display: 'swap',
 })
-const sans = DM_Sans({
+const sans = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
   variable: '--font-sans',
   display: 'swap',
 })
@@ -39,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="pt-BR" className={`${display.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   )

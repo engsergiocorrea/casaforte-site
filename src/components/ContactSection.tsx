@@ -13,7 +13,7 @@ export default function ContactSection() {
                 <span style={{width:'32px',height:'1px',background:'#E8390E'}} />
                 <span style={{fontSize:'0.75rem',fontWeight:600,color:'#E8390E',letterSpacing:'0.16em',textTransform:'uppercase'}}>Contato</span>
               </div>
-              <h2 style={{fontFamily:'var(--serif)',fontSize:'clamp(1.875rem, 5vw, 2.75rem)',fontWeight:600,color:'#2A2A2A',lineHeight:1.15,letterSpacing:'-0.02em',marginBottom:'1rem'}}>
+              <h2 style={{fontFamily:'var(--display)',fontSize:'clamp(1.875rem, 5vw, 2.75rem)',fontWeight:600,color:'#2A2A2A',lineHeight:1.15,letterSpacing:'-0.03em',marginBottom:'1rem'}}>
                 Fale com a Casa Forte
               </h2>
               <p style={{fontSize:'1rem',color:'#45433F',lineHeight:1.7,fontWeight:400,marginBottom:'2rem',maxWidth:'28rem'}}>

@@ -21,7 +21,7 @@ export default function Hero() {
             <span style={{width:'28px',height:'1px',background:'#E8390E'}} />
             <span style={{fontSize:'0.75rem',fontWeight:600,color:'rgba(255,255,255,0.8)',letterSpacing:'0.16em',textTransform:'uppercase'}}>Construtora &amp; Incorporadora</span>
           </div>
-          <h1 style={{fontFamily:'var(--serif)',fontSize:'clamp(2.75rem, 9vw, 4.75rem)',fontWeight:700,color:'#FFFFFF',lineHeight:1.02,letterSpacing:'-0.025em',marginBottom:'1.25rem'}}>
+          <h1 style={{fontFamily:'var(--display)',fontSize:'clamp(2.75rem, 9vw, 4.75rem)',fontWeight:700,color:'#FFFFFF',lineHeight:1,letterSpacing:'-0.045em',marginBottom:'1.25rem'}}>
             Casa Forte
           </h1>
           <p style={{fontSize:'clamp(1.0625rem, 3.6vw, 1.25rem)',fontWeight:400,color:'rgba(255,255,255,0.92)',lineHeight:1.55,marginBottom:'0.875rem'}}>
