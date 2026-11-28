@@ -1,5 +1,6 @@
 import 'server-only'
 import { soDigitos } from './formato'
+import { canalWhatsApp, enviarPelaCentral, type EnvioCentral } from './central-whatsapp'
 
 // Evolution API — mesmo canal do resto do ecossistema (Obras, Compras, Cobrança).
 // Texto: POST {URL}/message/sendText/{instance} body {number, text}, header apikey.
@@ -10,7 +11,27 @@ export function normalizarTelefone(tel: string | null | undefined): string | nul
   return d.startsWith('55') && d.length >= 12 ? d : `55${d}`
 }
 
-export async function enviarWhatsApp(numero: string, texto: string): Promise<boolean> {
+type Opcoes = { modelo?: EnvioCentral['modelo']; origem?: string; nome?: string }
+
+// Envia pela Evolution (como antes) ou, quando a diretoria trocar o canal para a
+// Meta, pela central de WhatsApp — com o modelo aprovado para fora da janela de 24h.
+export async function enviarWhatsApp(numero: string, texto: string, opcoes: Opcoes = {}): Promise<boolean> {
+  if ((await canalWhatsApp()) === 'meta') {
+    const r = await enviarPelaCentral({ para: numero, texto, modelo: opcoes.modelo, origem: opcoes.origem ?? 'site', nome: opcoes.nome })
+    if (!r.ok) console.error('[site] central WhatsApp', r.erro)
+    return r.ok
+  }
+  return enviarEvolution(numero, texto)
+}
+
+/** Código de acesso da Área do Cliente (modelo de autenticação da Meta). */
+export async function enviarCodigoAcesso(numero: string, codigo: string, nome?: string | null): Promise<boolean> {
+  const r = await enviarPelaCentral({ para: numero, codigo, origem: 'site:area-cliente', nome: nome ?? undefined })
+  if (!r.ok) console.error('[area-cliente] código', r.erro)
+  return r.ok
+}
+
+async function enviarEvolution(numero: string, texto: string): Promise<boolean> {
   const url = process.env.EVOLUTION_API_URL
   const key = process.env.EVOLUTION_API_KEY
   const instance = process.env.EVOLUTION_INSTANCE || 'casaforte'
@@ -39,5 +60,10 @@ export async function avisarEquipe(texto: string): Promise<void> {
     .split(',')
     .map((n) => normalizarTelefone(n))
     .filter((n): n is string => !!n)
-  await Promise.allSettled(numeros.map((n) => enviarWhatsApp(n, texto)))
+  const plano = texto.replace(/\*/g, '')
+  const [primeira, ...resto] = plano.split('\n')
+  await Promise.allSettled(numeros.map((n) => enviarWhatsApp(n, texto, {
+    origem: 'site:area-cliente',
+    modelo: { nome: 'aviso_interno', campos: { assunto: primeira.replace(/^\W+/, '').trim() || 'Área do Cliente', texto: resto.join(' ').trim().slice(0, 900) || plano.slice(0, 900), quem: 'Área do Cliente' } },
+  })))
 }

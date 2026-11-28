@@ -4,10 +4,11 @@ import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import { refresh } from 'next/cache'
 import { db } from '@/lib/cliente/supabase'
-import { conferirSenha, hashSenha, novoToken, sha256 } from '@/lib/cliente/crypto'
+import { conferirSenha, hashSenha, novoCodigo, novoToken, sha256 } from '@/lib/cliente/crypto'
 import { documentoValido, formatarDocumento, soDigitos } from '@/lib/cliente/formato'
 import { acessoPorDocumento } from '@/lib/cliente/acesso'
-import { avisarEquipe, enviarWhatsApp, normalizarTelefone } from '@/lib/cliente/whatsapp'
+import { avisarEquipe, enviarCodigoAcesso, enviarWhatsApp, normalizarTelefone } from '@/lib/cliente/whatsapp'
+import { canalWhatsApp } from '@/lib/cliente/central-whatsapp'
 import { criarSessao, encerrarSessao, exigirConta } from '@/lib/cliente/sessao'
 
 export type Estado = { erro?: string; ok?: string } | undefined
@@ -78,7 +79,7 @@ export async function solicitarAcesso(_: Estado, form: FormData): Promise<Estado
   const doc = soDigitos(form.get('cpf'))
   if (!documentoValido(doc)) return { erro: 'Informe um CPF ou CNPJ válido.' }
   const resposta = {
-    ok: 'Se o documento estiver cadastrado, você receberá em instantes um link no WhatsApp registrado na Casa Forte. O link vale por 30 minutos.',
+    ok: 'Se o documento estiver cadastrado, você receberá em instantes, no WhatsApp registrado na Casa Forte, um código (ou link) de acesso válido por 30 minutos.',
   }
 
   try {
@@ -104,7 +105,8 @@ export async function solicitarAcesso(_: Estado, form: FormData): Promise<Estado
     }
 
     const nome = acesso.cliente.name ?? existente?.nome ?? null
-    const { token, hash } = novoToken()
+    const viaMeta = (await canalWhatsApp()) === 'meta'
+    const { token, hash } = viaMeta ? novoCodigo() : novoToken()
     const campos = {
       nome,
       telefone,
@@ -119,6 +121,10 @@ export async function solicitarAcesso(_: Estado, form: FormData): Promise<Estado
       : await db().from('cliente_contas').insert({ cpf: doc, ...campos })
     if (error) throw error
 
+    if (viaMeta) {
+      await enviarCodigoAcesso(telefone, token, nome)
+      return resposta
+    }
     const link = `${await origem()}/cliente/definir-senha?t=${token}`
     const primeiroNome = (nome ?? '').split(' ')[0]
     await enviarWhatsApp(

@@ -8,7 +8,7 @@ export default function PrimeiroAcessoPage() {
     <>
       <h1>Criar ou redefinir senha</h1>
       <p className="ac-acesso-sub">
-        Informe o CPF ou CNPJ usado na compra. Enviaremos um link seguro para o WhatsApp cadastrado na Casa Forte.
+        Informe o CPF ou CNPJ usado na compra. Enviaremos um código ou link seguro para o WhatsApp cadastrado na Casa Forte.
       </p>
       <PrimeiroAcessoForm />
       <div className="ac-acesso-links">

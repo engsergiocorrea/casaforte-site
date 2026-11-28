@@ -53,7 +53,10 @@ export async function POST(req: Request) {
     const fone = telefone.replace(/^55(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3')
     const origem = [txt(b.utm_source, 100), txt(b.utm_campaign, 150)].filter(Boolean).join(' / ')
     const texto = `🏡 *Novo interessado pelo site*\n\n*${nome}*\nWhatsApp: ${fone}\nhttps://wa.me/${telefone}${email ? `\nE-mail: ${email}` : ''}\nInteresse: ${projeto?.name ?? 'geral'}${txt(b.mensagem, 1000) ? `\nMensagem: ${txt(b.mensagem, 1000)}` : ''}${origem ? `\nOrigem: ${origem}` : ''}\n\nResponda o quanto antes 🙂`
-    const r = await Promise.allSettled(numeros.map((n) => enviarWhatsApp(n, texto)))
+    const r = await Promise.allSettled(numeros.map((n) => enviarWhatsApp(n, texto, {
+      origem: 'site:interesse',
+      modelo: { nome: 'site_novo_interessado', campos: { nome, telefone: fone, empreendimento: projeto?.name ?? 'geral', mensagem: txt(b.mensagem, 1000) || '-' } },
+    })))
     if (r.some((x) => x.status === 'fulfilled' && x.value)) await sb.from('site_leads').update({ avisado_em: new Date().toISOString() }).eq('id', lead.id)
   }
   return ok()

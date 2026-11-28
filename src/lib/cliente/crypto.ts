@@ -24,6 +24,14 @@ export function novoToken(): { token: string; hash: string } {
   return { token, hash: sha256(token) }
 }
 
+/** Código curto para o WhatsApp oficial (sem 0/O/1/I/L para não confundir). */
+export function novoCodigo(): { token: string; hash: string } {
+  const alfabeto = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'
+  const b = randomBytes(8)
+  const token = Array.from(b, (x) => alfabeto[x % alfabeto.length]).join('')
+  return { token, hash: sha256(token) }
+}
+
 export function sha256(v: string): string {
   return createHash('sha256').update(v).digest('hex')
 }

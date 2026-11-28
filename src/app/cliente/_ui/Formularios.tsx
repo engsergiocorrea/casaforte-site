@@ -48,12 +48,24 @@ export function LoginForm() {
 
 export function PrimeiroAcessoForm() {
   const [estado, acao, pendente] = useActionState(solicitarAcesso, undefined)
-  if (estado?.ok) return <Alerta estado={estado} />
+  if (estado?.ok) return (
+    <>
+      <Alerta estado={estado} />
+      <form action="/cliente/definir-senha" method="get" className="ac-form" style={{ marginTop: 16 }}>
+        <label className="ac-label">
+          Recebeu um código? Digite aqui
+          <input className="ac-input" name="t" required minLength={6} maxLength={15} autoComplete="one-time-code" autoCapitalize="characters" spellCheck={false}
+            onChange={(e) => { e.currentTarget.value = e.currentTarget.value.toUpperCase().replace(/[^A-Z0-9]/g, '') }} />
+        </label>
+        <button className="ac-btn ac-btn-full">Continuar</button>
+      </form>
+    </>
+  )
   return (
     <form action={acao} className="ac-form">
       <CampoDocumento />
       <Alerta estado={estado} />
-      <button className="ac-btn ac-btn-full" disabled={pendente}>{pendente ? 'Enviando…' : 'Receber link no WhatsApp'}</button>
+      <button className="ac-btn ac-btn-full" disabled={pendente}>{pendente ? 'Enviando…' : 'Receber acesso no WhatsApp'}</button>
     </form>
   )
 }
